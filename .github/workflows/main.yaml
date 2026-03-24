@@ -1,0 +1,26 @@
+name: ee-assignment
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout the code
+        uses: actions/checkout@v6
+
+      - name: Build and push
+        run: |
+          docker build -t ee-api:v1 .
+
+  deploy:
+    runs-on: minikube
+
+    needs: [docker]
+    steps:
+      - name: checkout the code
+        uses: actions/checkout@v6
+      - name: deploy to minikube
+        run: |
+          kubectl apply -f k8s/ -n ee

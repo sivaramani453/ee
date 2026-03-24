@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ee-api
+  namespace: ee
+  labels:
+    app: ee-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ee-api
+  template:
+    metadata:
+      labels:
+        app: ee-api
+    spec:
+      containers:
+      - name: ee-api
+        image: ee-api:v1
+        ports:
+        - containerPort: 8080
