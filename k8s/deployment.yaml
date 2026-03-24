@@ -17,6 +17,7 @@ spec:
     spec:
       containers:
       - name: ee-api
-        image: docker.io/library/ee-api:v1
+        image: ee-api:v1
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
