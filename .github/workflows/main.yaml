@@ -15,7 +15,7 @@ jobs:
           docker build -t ee-api:v1 .
 
   deploy:
-    runs-on: minikube
+    runs-on: self-hosted
 
     needs: [docker]
     steps:
